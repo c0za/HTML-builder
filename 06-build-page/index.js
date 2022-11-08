@@ -50,7 +50,7 @@ const startBuild = async () => {
       if (file.isFile() && path.extname(file.name).slice(1) === 'html') {
         let name = path.parse(file.name).name;
         let current = await readFile(path.join(__dirname, 'components', file.name), 'utf8');
-        resultHtml = resultHtml.replace(`{{${name}}}`, current);
+        resultHtml = resultHtml.replaceAll(`{{${name}}}`, current);
         await writeFile(index, resultHtml);
       }
     });
